@@ -16,15 +16,21 @@ Student.prototype.addMark = function (mark) {
     this.marks.push(mark);
   }
   // task_4
-  Student.prototype.addMarks = function (...mark) {
-    this.marks = [mark];
+  Student.prototype.addMarks = function (...rest) {
+    if (this.marks === undefined) {
+      this.marks = [...rest];
+    } else {
+      this.marks.push(...rest);
+    }
   };
   // task_5
-  Student.prototype.getAverage = function (...element) {
+  Student.prototype.getAverage = function () {
     let sum = 0;
-    console.log(
-      element.map((i) => (sum += i), sum).reverse()[0] / element.length
-    );
+    let length = this.marks.length;
+    for (let i = 0; i < length; i++) {
+      sum += this.marks[i];
+    }
+    return sum / length;
   };
   // task_6
   Student.prototype.exclude = function (reason) {
